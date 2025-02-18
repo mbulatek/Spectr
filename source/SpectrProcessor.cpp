@@ -8,9 +8,9 @@
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
-#include "myplugincids.h"
 #include "AudioRingBuffer.h"
 #include "SpectrProcessor.h"
+#include "SpectrCIds.h"
 #include "UI/CSpectrogramView.h"
 #include "Utils/Logger.h"
 
