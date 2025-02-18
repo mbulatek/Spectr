@@ -4,10 +4,10 @@
 
 #include "public.sdk/source/main/pluginfactory.h"
 
-#include "myplugincids.h"
-#include "version.h"
-#include "SpectrProcessor.h"
+#include "SpectrCIds.h"
 #include "SpectrController.h"
+#include "SpectrProcessor.h"
+#include "version.h"
 
 
 #define stringPluginName "Maro VST Spectr"

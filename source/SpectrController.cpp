@@ -2,9 +2,10 @@
 // Copyright(c) 2025 My Plug-in Company.
 //------------------------------------------------------------------------
 
-#include "SpectrController.h"
-#include "myplugincids.h"
 #include "vstgui4/vstgui/plugin-bindings/vst3editor.h"
+
+#include "SpectrCIds.h"
+#include "SpectrController.h"
 
 using namespace Steinberg;
 

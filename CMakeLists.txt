@@ -17,14 +17,14 @@ option(SMTG_ENABLE_VST3_HOSTING_EXAMPLES "Enable VST 3 Hosting Examples" OFF)
 set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13 CACHE STRING "")
 
 set(SOURCES
-    source/mypluginentry.cpp
+    source/SpectrEntry.cpp
     source/SpectrController.cpp
     source/SpectrEditor.cpp
     source/SpectrProcessor.cpp)
 
 set(HEADERS
 	source/version.h
-    source/myplugincids.h
+    source/SpectrCIds.h
     source/SpectrController.h
     source/SpectrEditor.h
     source/SpectrProcessor.h
@@ -41,7 +41,7 @@ add_subdirectory(${vst3sdk_SOURCE_DIR} ${PROJECT_BINARY_DIR}/vst3sdk)
 smtg_enable_vst3_sdk()
 
 smtg_add_vst3plugin(Spectr
-    ${SOURCE}
+    ${SOURCES}
     ${HEADERS}
 )
 
