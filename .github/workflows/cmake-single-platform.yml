@@ -65,6 +65,12 @@ jobs:
             Write-Host "No output artifact found"
             exit 1
         }
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: vst-binary
+        path: ${{github.workspace}}/build/VST3/Debug/Spectr.vst3/Contents/x86_64-win/Spectr.vst3
+
 #    - name: Test
 #      working-directory: ${{github.workspace}}/build
 #      # Execute tests defined by the CMake configuration.
