@@ -1,0 +1,73 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: CMake on a single platform
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: windows-2022
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download VST3SDK
+      shell: powershell
+      run: |
+        Invoke-WebRequest -Uri "https://www.steinberg.net/vst3sdk" -OutFile ${{github.workspace}}/vst3sdk.zip
+        Expand-Archive -Path ${{github.workspace}}/vst3sdk.zip -DestinationPath ${{github.workspace}}
+
+    - name: Configure CMake
+      shell: powershell
+      run: |
+        Write-Host "Setting up env..."
+        $env:VST3SDK_PATH = "${{github.workspace}}/VST_SDK/vst3sdk"
+        if (-not $?) {
+          Write-Host "Failed to set env"
+        }
+
+        Write-Host "Creating build directory..."
+        mkdir ${{github.workspace}}/build
+        if (-not $?) {
+          Write-Host "Failed to create build directory"
+        }
+
+
+        Write-Host "Calling cmake configure..."
+        cmake -B ${{github.workspace}}/build -G "Visual Studio 17 2022"
+        if (-not $?) {
+          Write-Host "Failed to configure build"
+        }
+
+    - name: Build
+      shell: powershell
+      run: |
+        $ErrorActionPreference = 'Continue'
+        cmake --build ${{github.workspace}}/build
+        $vstFile = "${{github.workspace}}/build/VST3/Debug/Spectr.vst3/Contents/x86_64-win/Spectr.vst3"
+        ls ${{github.workspace}}/build/VST3/
+        ls ${{github.workspace}}/build/VST3/Debug/
+        ls ${{github.workspace}}/build/VST3/Debug/Spectr.vst3/Contents/x86_64-win/
+        if (Test-Path -Path $vstFile) {
+            exit 0
+        } else {
+            Write-Host "No output artifact found"
+            exit 1
+        }
+#    - name: Test
+#      working-directory: ${{github.workspace}}/build
+#      # Execute tests defined by the CMake configuration.
+#      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+#      run: ctest -C ${{env.BUILD_TYPE}}
+
