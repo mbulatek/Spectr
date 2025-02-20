@@ -25,12 +25,13 @@ jobs:
     - name: Download VST3SDK
       shell: powershell
       run: |
-        wget "https://www.steinberg.net/vst3sdk"
-        Expand-Archive -Path vst-sdk_3.7.12_build-20_2024-07-23.zip -DestinationPath vst-sdk
+        Invoke-WebRequest -Uri "https://www.steinberg.net/vst3sdk" -OutFile ${{github.workspace}}/vst3sdk.zip
+        Expand-Archive -Path ${{github.workspace}}/vst3sdk.zip -DestinationPath ${{github.workspace}}
 
     - name: Configure CMake
       shell: powershell
       run: |
+        $env:VST3SDK_PATH = ${{github.workspace}}/VST_SDK/vst3sdk
         mkdir ${{github.workspace}}/build
         cd ${{github.workspace}}/build
         cmake -G "Visual Studio 17 2022" ..
