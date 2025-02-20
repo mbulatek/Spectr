@@ -91,10 +91,10 @@
 					"wants-focus": "false"
 				},
 				"children": {
-					"CSpectrogramView": {
+					"SpectrogramView": {
 						"attributes": {
 							"autosize": "left right top ",
-							"class": "CSpectrogramView",
+							"class": "SpectrogramView",
 							"mouse-enabled": "true",
 							"opacity": "1",
 							"origin": "20, 20",
