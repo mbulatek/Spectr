@@ -51,8 +51,20 @@ jobs:
         }
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build
-
+      shell: powershell
+      run: |
+        $ErrorActionPreference = 'Continue'
+        cmake --build ${{github.workspace}}/build
+        $vstFile = "${{github.workspace}}/build/VST3/Debug/Spectr.vst3/Contents/x86_64-win/Spectr.vst3"
+        ls ${{github.workspace}}/build/VST3/
+        ls ${{github.workspace}}/build/VST3/Debug/
+        ls ${{github.workspace}}/build/VST3/Debug/Spectr.vst3/Contents/x86_64-win/
+        if (Test-Path -Path $vstFile) {
+            exit 0
+        } else {
+            Write-Host "No output artifact found"
+            exit 1
+        }
 #    - name: Test
 #      working-directory: ${{github.workspace}}/build
 #      # Execute tests defined by the CMake configuration.
