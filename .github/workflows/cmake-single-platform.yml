@@ -31,11 +31,24 @@ jobs:
     - name: Configure CMake
       shell: powershell
       run: |
+        Write-Host "Setting up env..."
         $env:VST3SDK_PATH = ${{github.workspace}}/VST_SDK/vst3sdk
+        if (-not $?) {
+          Write-Host "Failed to set env"
+        }
+
+        Write-Host "Creating build directory..."
         mkdir ${{github.workspace}}/build
-        cd ${{github.workspace}}/build
-        cmake -G "Visual Studio 17 2022" ..
-        cd ..
+        if (-not $?) {
+          Write-Host "Failed to create build directory"
+        }
+
+
+        Write-Host "Calling cmake configure..."
+        cmake -B ${{github.workspace}}/build -G "Visual Studio 17 2022"
+        if (-not $?) {
+          Write-Host "Failed to configure build"
+        }
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build
