@@ -1,2 +1,1 @@
-#include "UI/CSpectrogramView.h"
-
+#include <UI/SpectrogramView.h>

@@ -6,8 +6,15 @@
 
 #include <spdlog/spdlog.h>
 
-namespace MaroVST {
+namespace MaroVST
+{
 
-void SetupLogger();
+namespace Config
+{
 
-}  // namespace MaroVST
+constexpr auto LOG_FILENAME = "c:\\proj\\Spectr\\spectr_vst3.log";
+constexpr auto LOG_LEVEL = spdlog::level::trace;
+
+} // namespace Config
+
+} // namespace MaroVST

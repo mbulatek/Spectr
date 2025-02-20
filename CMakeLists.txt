@@ -1,15 +1,7 @@
-cmake_minimum_required(VERSION 3.14.0)
+cmake_minimum_required(VERSION 3.21.0)
 
-cmake_policy(SET CMP0054 NEW)
-cmake_policy(SET CMP0135 NEW)  
-
-project(Spectr
-    # This is your plug-in version number. Change it here only.
-    # Version number symbols usable in C++ can be found in
-    # source/version.h and ${PROJECT_BINARY_DIR}/projectversion.h.
-    VERSION 1.0.0.0 
-    DESCRIPTION "Spectr VST 3 Plug-in"
-)
+#cmake_policy(SET CMP0054 NEW)
+#cmake_policy(SET CMP0135 NEW)  
 
 option(SMTG_ENABLE_VST3_PLUGIN_EXAMPLES "Enable VST 3 Plug-in Examples" OFF)
 option(SMTG_ENABLE_VST3_HOSTING_EXAMPLES "Enable VST 3 Hosting Examples" OFF)
@@ -20,14 +12,18 @@ set(SOURCES
     source/SpectrEntry.cpp
     source/SpectrController.cpp
     source/SpectrEditor.cpp
-    source/SpectrProcessor.cpp)
+    source/SpectrProcessor.cpp
+    source/Utils/Logger.cpp
+)
 
 set(HEADERS
-	source/version.h
+    source/version.h
     source/SpectrCIds.h
     source/SpectrController.h
     source/SpectrEditor.h
     source/SpectrProcessor.h
+    source/UI/SpectrogramView.h
+    source/Utils/Logger.h
 )
 
 set(vst3sdk_SOURCE_DIR "C:/vst3sdk")
@@ -35,14 +31,27 @@ if(NOT vst3sdk_SOURCE_DIR)
     message(FATAL_ERROR "Path to VST3 SDK is empty!")
 endif()
 
+project(Spectr
+    # This is your plug-in version number. Change it here only.
+    # Version number symbols usable in C++ can be found in
+    # source/version.h and ${PROJECT_BINARY_DIR}/projectversion.h.
+    VERSION 1.0.0.0 
+    DESCRIPTION "Spectr VST 3 Plug-in"
+)
+
 set(SMTG_VSTGUI_ROOT "${vst3sdk_SOURCE_DIR}")
 
 add_subdirectory(${vst3sdk_SOURCE_DIR} ${PROJECT_BINARY_DIR}/vst3sdk)
 smtg_enable_vst3_sdk()
 
 smtg_add_vst3plugin(Spectr
-    ${SOURCES}
-    ${HEADERS}
+        ${SOURCES} 
+        ${HEADERS}
+)
+
+target_include_directories(Spectr
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/source
 )
 
 #- VSTGUI Wanted ----

@@ -1,18 +1,37 @@
----
-Language:        Cpp
-BasedOnStyle:  Google
-AccessModifierOffset: -4
-Standard:        c++20
-IndentWidth:     4
-TabWidth:        4
-UseTab:          Never
-ColumnLimit:     100
-AlignAfterOpenBracket: Align
-BinPackParameters: false
-AlignEscapedNewlines: Left
-AlwaysBreakTemplateDeclarations: Yes
-PackConstructorInitializers: Never
-BreakConstructorInitializersBeforeComma: false
-IndentPPDirectives: BeforeHash
-SortIncludes:    Never
+BasedOnStyle: Google
+
+Language: Cpp
+Standard: c++20
+
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BreakBeforeBraces: Attach
+ColumnLimit: 80
+DerivePointerAlignment: false
+PointerAlignment: Left
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+
+IncludeBlocks: Regroup
+SortIncludes: true
+SortUsingDeclarations: true
+
+CommentPragmas: '^ NOLINT'
+ReflowComments: true
+
+SpaceAfterTemplateKeyword: true
+
+SpacesInAngles: false
+SpaceBeforeParens: ControlStatements
+
+# TODO Uncomment for the later version of clang-format
+# RequiresClausePosition: OwnLine
+# ConceptsSpacing: true
+# TemplateArgumentSpace: Remove
+# LambdaBodyIndentation: Signature
+
 ...

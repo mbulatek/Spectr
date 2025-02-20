@@ -1,10 +1,14 @@
+//------------------------------------------------------------------------
+// Copyright(c) 2025 My Plug-in Company.
+//------------------------------------------------------------------------
+
 #pragma once
 
 #include <vector>
 #include <atomic>
 #include <cstddef>
 
-#include "Utils/Logger.h"
+#include <Utils/Logger.h>
 
 namespace MaroVST
 {

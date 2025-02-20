@@ -38,3 +38,7 @@ build/
 .cproject
 .project
 .settings/
+.externalToolBuilders/
+
+# Logs
+*.log
