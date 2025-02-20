@@ -10,3 +10,6 @@ This repository contains spectrum analyzer VST3 plugin based on VST 3 Audio Plug
 
 ## Testing
 Run **VST3PluginTestHost** from the VST3SDK add Spectr VST plugin
+
+## Code maintaining
+Run `cmake --build . --target clang-format` on each PR
