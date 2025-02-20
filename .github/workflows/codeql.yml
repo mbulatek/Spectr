@@ -1,0 +1,33 @@
+name: "Clang Format Check"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  clang-format:
+    name: Check Clang Format
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up CMake
+      uses: lukka/get-cmake@v3
+
+    - name: Configure CMake
+      run: cmake -S . -B build
+
+    - name: Build Clang Format Target
+      run: cmake --build build --target clang-format
+
+    - name: Run Clang Format Check
+      run: |
+        diff=$(git diff)
+        if [ -n "$diff" ]; then
+          echo "Code is not properly formatted. Please run clang-format."
+          echo "$diff"
+          exit 1
+        fi
