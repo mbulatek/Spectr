@@ -26,7 +26,12 @@ set(HEADERS
     source/Utils/Logger.h
 )
 
-set(vst3sdk_SOURCE_DIR "C:/vst3sdk")
+if(DEFINED ENV{VST3SDK_PATH})
+  set(vst3sdk_SOURCE_DIR "$ENV{VST3SDK_PATH}" CACHE PATH "Path to VST3 SDK")
+else()
+  set(vst3sdk_SOURCE_DIR "C:/vst3sdk" CACHE PATH "Path to VST3 SDK")
+endif()
+
 if(NOT vst3sdk_SOURCE_DIR)
     message(FATAL_ERROR "Path to VST3 SDK is empty!")
 endif()
