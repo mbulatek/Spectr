@@ -1,0 +1,47 @@
+# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+name: CMake on a single platform
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
+    # You can convert this to a matrix build if you need cross-platform coverage.
+    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+    runs-on: windows-2022
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download VST3SDK
+      shell: powershell
+      run: |
+        wget "https://download.steinberg.net/sdk_downloads/Fvst-sdk_3.7.12_build-20_2024-07-23.zip"
+        Expand-Archive -Path vst-sdk_3.7.12_build-20_2024-07-23.zip -DestinationPath vst-sdk
+
+    - name: Configure CMake
+      shell: powershell
+      run: |
+        mkdir ${{github.workspace}}/build
+        cd ${{github.workspace}}/build
+        cmake -G "Visual Studio 17 2022" ..
+        cd ..
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build
+
+#    - name: Test
+#      working-directory: ${{github.workspace}}/build
+#      # Execute tests defined by the CMake configuration.
+#      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+#      run: ctest -C ${{env.BUILD_TYPE}}
+
