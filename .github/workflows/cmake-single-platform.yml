@@ -32,7 +32,7 @@ jobs:
       shell: powershell
       run: |
         Write-Host "Setting up env..."
-        $env:VST3SDK_PATH = ${{github.workspace}}/VST_SDK/vst3sdk
+        $env:VST3SDK_PATH = "${{github.workspace}}/VST_SDK/vst3sdk"
         if (-not $?) {
           Write-Host "Failed to set env"
         }
