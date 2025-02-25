@@ -26,13 +26,22 @@ if (NOT fftw_POPULATED)
     
     set(FFTW_BUILD_DIR ${fftw_BINARY_DIR})
     set(FFTW_SOURCE_DIR ${fftw_SOURCE_DIR})
-
+    target_include_directories(Spectr
+	    PUBLIC
+	    ${FFTW_SOURCE_DIR}/api
+    )
+    
     set(ENABLE_SSE ON CACHE BOOL "Enable SSE support")
     set(ENABLE_AVX ON CACHE BOOL "Enable AVX support")
     set(ENABLE_THREADS ON CACHE BOOL "Enable multi-threading support")
     set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static FFTW library")
 
     add_subdirectory(${FFTW_SOURCE_DIR} ${FFTW_BUILD_DIR})
+    
+    set(ENABLE_SSE ON CACHE BOOL "Enable SSE support" FORCE)
+	set(ENABLE_AVX ON CACHE BOOL "Enable AVX support" FORCE)
+	set(ENABLE_THREADS ON CACHE BOOL "Enable multi-threading support" FORCE)
+	set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static FFTW library" FORCE)
 endif()
 
 # Boost
@@ -98,7 +107,7 @@ if (NOT Boost_POPULATED)
 	endif()
 	
 	execute_process(
-	    COMMAND ${Boost_SOURCE_DIR}/b2 --with-filesystem --with-system link=static runtime-link=shared threading=multi variant=release
+	    COMMAND ${Boost_SOURCE_DIR}/b2 --with-filesystem --with-system  --with-lockfree link=static runtime-link=shared threading=multi variant=release
 	    WORKING_DIRECTORY ${Boost_SOURCE_DIR}
 	    RESULT_VARIABLE BOOST_B2_LIBRARIES_RESULT
 	)
@@ -113,7 +122,7 @@ if (NOT Boost_POPULATED)
     if (Boost_FOUND)
         message(STATUS "Boost found: ${Boost_INCLUDE_DIRS}")
         include_directories(${Boost_INCLUDE_DIRS})
-        target_link_libraries(${PROJECT_NAME} PRIVATE Boost::filesystem Boost::system)
+        target_link_libraries(${PROJECT_NAME} PRIVATE Boost::filesystem Boost::system Boost::lockfree)
     else()
         message(FATAL_ERROR "Boost NOT found! Check if it's correctly installed.")
     endif()

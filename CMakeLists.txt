@@ -13,6 +13,9 @@ set(SOURCES
     source/SpectrController.cpp
     source/SpectrEditor.cpp
     source/SpectrProcessor.cpp
+    source/Engine/Analyzer/SpectralDensity.cpp
+    source/Engine/Pipeline/INode.cpp
+    source/Engine/Pipeline/Pipeline.cpp
     source/Utils/Logger.cpp
 )
 
@@ -22,6 +25,9 @@ set(HEADERS
     source/SpectrController.h
     source/SpectrEditor.h
     source/SpectrProcessor.h
+    source/Engine/Analyzer/SpectralDensity.h
+    source/Engine/Pipeline/INode.h
+    source/Engine/Pipeline/Pipeline.h
     source/UI/SpectrogramView.h
     source/Utils/Logger.h
 )
@@ -45,6 +51,11 @@ project(Spectr
 )
 
 set(SMTG_VSTGUI_ROOT "${vst3sdk_SOURCE_DIR}")
+
+if (MSVC)
+    add_compile_options(/arch:SSE /arch:AVX)
+endif()
+
 
 add_subdirectory(${vst3sdk_SOURCE_DIR} ${PROJECT_BINARY_DIR}/vst3sdk)
 smtg_enable_vst3_sdk()
@@ -112,8 +123,12 @@ elseif(SMTG_WIN)
     endif()
 endif(SMTG_MAC)
 
-include(dependencies.cmake)
-target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog fftw3 Boost::filesystem Boost::system)
+#include(dependencies.cmake)
+find_package(spdlog CONFIG REQUIRED)
+#find_package(fftw3 CONFIG REQUIRED)
+find_package(FFTW3 REQUIRED COMPONENTS double)
+find_package(Boost 1.85 REQUIRED COMPONENTS filesystem system lockfree)
+target_link_libraries(Spectr PRIVATE spdlog::spdlog FFTW3::fftw3 Boost::lockfree)
 
 
 find_program(CLANG_FORMAT_EXE NAMES clang-format)

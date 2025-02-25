@@ -9,7 +9,7 @@
 
 using namespace Steinberg;
 
-namespace MaroVST {
+namespace spectr {
 
 tresult PLUGIN_API SpectrController::initialize(FUnknown* context) {
   // Here the Plug-in will be instantiated
@@ -67,4 +67,4 @@ IPlugView* PLUGIN_API SpectrController::createView(FIDString name) {
   return nullptr;
 }
 
-}  // namespace MaroVST
+}  // namespace spectr

@@ -10,7 +10,7 @@
 
 #include <vector>
 
-namespace MaroVST {
+namespace spectr {
 
 class SpectrProcessor : public Steinberg::Vst::AudioEffect {
  public:
@@ -60,4 +60,4 @@ class SpectrProcessor : public Steinberg::Vst::AudioEffect {
   AudioRingBuffer fftBuffer;
 };
 
-}  // namespace MaroVST
+}  // namespace spectr

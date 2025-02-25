@@ -1,3 +1,7 @@
+//------------------------------------------------------------------------
+// Copyright(c) 2025 My Plug-in Company.
+//------------------------------------------------------------------------
+
 #include <UI/SpectrogramView.h>
 #include <Utils/Logger.h>
 #include <pluginterfaces/vst/ivsteditcontroller.h>
@@ -7,7 +11,7 @@
 #include <vstgui4/vstgui/uidescription/iviewfactory.h>
 #include <vstgui4/vstgui/vstgui.h>
 
-namespace MaroVST {
+namespace spectr {
 
 class SpectrEditor : public VSTGUI::VST3Editor {
  public:
@@ -22,4 +26,4 @@ class SpectrEditor : public VSTGUI::VST3Editor {
   }
 };
 
-}  // namespace MaroVST
+}  // namespace spectr

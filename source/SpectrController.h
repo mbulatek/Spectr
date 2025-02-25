@@ -12,7 +12,7 @@
 #include <public.sdk/source/vst/vsteditcontroller.h>
 #include <vstgui4/vstgui/vstgui.h>
 
-namespace MaroVST {
+namespace spectr {
 
 class SpectrController : public Steinberg::Vst::EditControllerEx1 {
  public:
@@ -47,4 +47,4 @@ class SpectrController : public Steinberg::Vst::EditControllerEx1 {
   DELEGATE_REFCOUNT(EditController)
 };
 
-}  // namespace MaroVST
+}  // namespace spectr
