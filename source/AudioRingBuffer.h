@@ -10,7 +10,7 @@
 
 #include <Utils/Logger.h>
 
-namespace MaroVST
+namespace spectr
 {
 
 class AudioRingBuffer
@@ -59,4 +59,4 @@ private:
     size_t capacity;
 };
 
-} // namespace MaroVST
+} // namespace spectr

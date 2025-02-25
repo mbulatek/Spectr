@@ -18,7 +18,7 @@
 
 #include <cstdlib>
 
-namespace MaroVST {
+namespace spectr {
 class SpectrogramView : public VSTGUI::CView {
  public:
   SpectrogramView(const VSTGUI::CRect& size)
@@ -167,4 +167,4 @@ class SpectrogramViewCreator : public VSTGUI::ViewCreatorAdapter {
   }
 };
 
-}  // namespace MaroVST
+}  // namespace spectr

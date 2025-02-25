@@ -7,7 +7,7 @@
 #include <pluginterfaces/base/funknown.h>
 #include <pluginterfaces/vst/vsttypes.h>
 
-namespace MaroVST {
+namespace spectr {
 
 static const Steinberg::FUID kSpectrProcessorUID(0x875965F5, 0x366558DF,
                                                  0xB4C01848, 0x017AA95C);
@@ -16,4 +16,4 @@ static const Steinberg::FUID kSpectrControllerUID(0xB751A80D, 0x8FF35C8A,
 
 #define SpectrVST3Category "Fx|Analyzer"
 
-}  // namespace MaroVST
+}  // namespace spectr

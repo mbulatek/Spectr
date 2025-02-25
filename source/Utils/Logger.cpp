@@ -8,7 +8,7 @@
 
 #include <chrono>
 
-namespace MaroVST {
+namespace spectr {
 
 void SetupLogger() {
   std::shared_ptr<spdlog::logger> logger;
@@ -25,4 +25,4 @@ void SetupLogger() {
   spdlog::flush_every(std::chrono::milliseconds(200));
 }
 
-}  // namespace MaroVST
+}  // namespace spectr

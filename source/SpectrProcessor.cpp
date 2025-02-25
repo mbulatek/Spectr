@@ -15,7 +15,7 @@
 
 using namespace Steinberg;
 
-namespace MaroVST {
+namespace spectr {
 
 static SpectrogramViewCreator spectrogramViewCreator;
 
@@ -217,4 +217,4 @@ bool SpectrProcessor::getFFTData(AudioRingBuffer::SamplesBuffer& outData) {
 }
 
 //------------------------------------------------------------------------
-}  // namespace MaroVST
+}  // namespace spectr

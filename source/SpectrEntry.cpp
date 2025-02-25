@@ -11,13 +11,13 @@
 #define stringPluginName "Maro VST Spectr"
 
 using namespace Steinberg::Vst;
-using namespace MaroVST;
+using namespace spectr;
 
 //------------------------------------------------------------------------
 //  VST Plug-in Entry
 //------------------------------------------------------------------------
 
-BEGIN_FACTORY_DEF("MaroVST Company", "https://www.mycompanyname.com",
+BEGIN_FACTORY_DEF("spectr Company", "https://www.mycompanyname.com",
                   "mailto:mbulatek@gmail.com")
 
 //! First Plug-in included in this factory

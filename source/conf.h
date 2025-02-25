@@ -6,7 +6,7 @@
 
 #include <spdlog/spdlog.h>
 
-namespace MaroVST
+namespace spectr
 {
 
 namespace Config
@@ -17,4 +17,4 @@ constexpr auto LOG_LEVEL = spdlog::level::trace;
 
 } // namespace Config
 
-} // namespace MaroVST
+} // namespace spectr

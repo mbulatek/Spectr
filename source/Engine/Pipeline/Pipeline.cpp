@@ -2,12 +2,16 @@
 // Copyright(c) 2025 My Plug-in Company.
 //------------------------------------------------------------------------
 
-#pragma once
-
-#include <spdlog/spdlog.h>
+#include <Engine/Pipeline/Pipeline.h>
 
 namespace spectr {
+namespace engine {
 
-void SetupLogger();
+Pipeline::Pipeline() {
+}
 
-}  // namespace spectr
+Pipeline::~Pipeline() {
+}
+
+} // namespace engine
+} // namespace spectr
